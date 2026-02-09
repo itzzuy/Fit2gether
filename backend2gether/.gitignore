@@ -1,6 +1,6 @@
 .env.example
 .env.development
 .env.production
-
+.env
 node_modules
 /src/generated/prisma
