@@ -1,4 +1,4 @@
-const express = require("express")
+import express from "express"
 
 import { connectDB, disconnectDB } from "./config/db.js"
 import { config } from "dotenv"
