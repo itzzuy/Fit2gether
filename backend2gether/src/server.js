@@ -3,16 +3,25 @@ import express from "express"
 import { connectDB, disconnectDB } from "./config/db.js"
 import { config } from "dotenv"
 
+import authRoutes from "./routes/authRoutes.js"
+
 config();
 connectDB();
 const app = express()
 
+// Body parsing middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+
+// API Routes
+app.use("/auth", authRoutes);
+app.get("/", (req, res) => {
+  res.status(200).json({ message: "server is running"})
+})
+
 const PORT = 3000;
 
-app.get("/", (req, res) => {
-  res.json({ message: "Server is running"})
-});
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server is running on ${PORT}`)
 });
 
